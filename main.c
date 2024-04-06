@@ -15,8 +15,16 @@ int build_buttons(GtkWidget **buttons, int number_of_buttons, GtkCssProvider *cs
     commands[4] = "notify-send button 5 clicked";
     commands[5] = "notify-send button 6 clicked";
 
+    char *button_labels[number_of_buttons];
+    button_labels[0] = "Lock";
+    button_labels[1] = "Logout";
+    button_labels[2] = "Shutdown";
+    button_labels[3] = "Reboot";
+    button_labels[4] = "Suspend";
+    button_labels[5] = "Hibernate";
+
     for (int i = 0; i < number_of_buttons; i++) {
-        buttons[i] = gtk_button_new_with_label("Button");
+        buttons[i] = gtk_button_new_with_label(button_labels[i]);
         gtk_style_context_add_provider(gtk_widget_get_style_context(buttons[i]), GTK_STYLE_PROVIDER(css_provider),
                                        GTK_STYLE_PROVIDER_PRIORITY_USER);
         gtk_container_add(GTK_CONTAINER(button_box), buttons[i]);
@@ -52,7 +60,6 @@ static void activate(GtkApplication *app) {
     gtk_container_add(GTK_CONTAINER(window), button_box);
     gtk_widget_show_all(window);
 
-    //linking the signals to the buttons
     gtk_main();
 }
 

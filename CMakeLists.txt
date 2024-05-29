@@ -6,7 +6,10 @@ set(CMAKE_C_STANDARD 11)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 
-add_executable(LogOutMan main.c)
+add_executable(LogOutMan main.c
+        json-handler.h
+        json-handler.c
+        cJSON.c)
 
 target_link_libraries(LogOutMan ${GTK3_LIBRARIES})
 

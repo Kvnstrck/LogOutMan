@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
+#include "json-handler.h"
 
 static void execute_command(GtkWidget *widget, gpointer data, char *command) {
     system(command);
@@ -12,21 +13,19 @@ gboolean kill_process(GtkWidget *widget, GdkEvent *event, gpointer data) {
 
 int build_buttons(GtkWidget **buttons, int number_of_buttons, GtkCssProvider *css_provider, GtkWidget *button_box) {
 
-    char *commands[number_of_buttons];
-    commands[0] = "swaylock";
-    commands[1] = "loginctl terminate-user $USER";
-    commands[2] = "systemctl poweroff";
-    commands[3] = "systemctl reboot";
-    commands[4] = "systemctl suspend";
-    commands[5] = "systemctl hibernate";
+    //get json array and parse it
+    char * json_object = read_in_object();
+    char*** button_elements = parse(json_object);
 
+    char *commands[number_of_buttons];
     char *button_labels[number_of_buttons];
-    button_labels[0] = "Lock";
-    button_labels[1] = "Logout";
-    button_labels[2] = "Shutdown";
-    button_labels[3] = "Reboot";
-    button_labels[4] = "Suspend";
-    button_labels[5] = "Hibernate";
+
+    for (int i= 0;i<6;i++) {
+        //paste in commands
+        commands[i] = button_elements[i][1];
+        //paste in labels
+        button_labels[i] = button_elements[i][0];
+    }
 
     for (int i = 0; i < number_of_buttons; i++) {
         buttons[i] = gtk_button_new_with_label(button_labels[i]);
@@ -36,6 +35,10 @@ int build_buttons(GtkWidget **buttons, int number_of_buttons, GtkCssProvider *cs
 
         g_signal_connect(buttons[i], "clicked", G_CALLBACK(execute_command), commands[i]);
     }
+    //free memory from string and string array
+    free(json_object);
+    free(button_elements);
+
     return 0;
 }
 

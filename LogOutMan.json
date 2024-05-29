@@ -1,0 +1,28 @@
+{
+  "Commands": [
+    {
+      "name": "name1",
+      "command": "notify-send command1"
+    },
+    {
+      "name": "name2",
+      "command": "command2"
+    },
+    {
+      "name": "name3",
+      "command": "command3"
+    },
+    {
+      "name": "name4",
+      "command": "command4"
+    },
+    {
+      "name": "name5",
+      "command": "command5"
+    },
+    {
+      "name": "name6",
+      "command": "command6"
+    }
+  ]
+}

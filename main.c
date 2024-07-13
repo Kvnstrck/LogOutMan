@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include "json-handler.h"
+#include "util.h"
 
 static void execute_command(GtkWidget *widget, gpointer data, char *command) {
     system(command);
@@ -53,8 +54,7 @@ static void activate(GtkApplication *app) {
     gtk_window_set_default_size(GTK_WINDOW(window), 120, 300);
 
     //setup variable for css config
-    const char* suffix = "/.config/LogOutMan/main.css";
-    const char* config_file = strcat(getenv("HOME"),suffix);
+    const char* config_file = get_relative_path("main.css");
 
     //setup CSS
     gtk_css_provider_load_from_path(cssProvider, config_file , NULL);

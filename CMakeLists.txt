@@ -9,7 +9,8 @@ pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 add_executable(LogOutMan main.c
         json-handler.h
         json-handler.c
-        cJSON.c)
+        cJSON.c
+        util.c)
 
 target_link_libraries(LogOutMan ${GTK3_LIBRARIES})
 

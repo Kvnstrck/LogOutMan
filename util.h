@@ -1,0 +1,1 @@
+char* get_relative_path(char* filenameWithEnding);

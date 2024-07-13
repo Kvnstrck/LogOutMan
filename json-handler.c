@@ -3,11 +3,13 @@
 #include "cJSON.h"
 #include <stdlib.h>
 #include <string.h>
+#include <pwd.h>
+#include <unistd.h>
 
 char *read_in_object() {
     //setup variable for json config
     const char* suffix = "/.config/LogOutMan/LogOutMan.json";
-    const char* json_file = strcat(getenv("HOME"),suffix);
+    const char* json_file = strcat((getpwuid(getuid())->pw_dir),suffix);
 
     // Open a file in read mode
     FILE *fptr;

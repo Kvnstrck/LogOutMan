@@ -1,28 +1,29 @@
 {
   "Commands": [
     {
-      "name": "name1",
-      "command": "notify-send command1"
+      "name": "Lock",
+      "command": "swaylock"
     },
     {
-      "name": "name2",
-      "command": "command2"
+      "name": "Logout",
+      "command": "loginctl terminate-user $USER"
     },
     {
-      "name": "name3",
-      "command": "command3"
+      "name": "Shutdown",
+      "command": "systemctl poweroff"
     },
     {
-      "name": "name4",
-      "command": "command4"
+      "name": "Reboot",
+      "command": "systemctl reboot"
     },
     {
-      "name": "name5",
-      "command": "command5"
+      "name": "Suspend",
+      "command": "systemctl suspend"
     },
     {
-      "name": "name6",
-      "command": "command6"
+      "name": "Hibernate",
+      "command": "systemctl hibernate"
     }
   ]
 }
+

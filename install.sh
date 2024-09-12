@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts "hva:" flag; do
+while getopts "hva" flag; do
  case $flag in
    h) # Handle the -h flag
    # Display script help information
@@ -13,8 +13,7 @@ while getopts "hva:" flag; do
    ;;
    a)
      # append the window rules to the hyprland config
-    echo "windowrule=float,^(LogOutMan)$
-           windowrule=move 35 770,title:^(LogOutMan)(.*)$" >> ~/.config/hypr/hyprland.conf
+    echo $'\n#Window rules for Logoutman\nwindowrule=float,^(LogOutMan)$\nwindowrule = move 35 50, ^(LogOutMan)$' >> ~/.config/hypr/hyprland.conf
    ;;
    \?)
    # Handle invalid options
@@ -36,5 +35,4 @@ cd ./..
 mkdir -p ~/.config/LogOutMan/
 cp ./LogOutMan.json ~/.config/LogOutMan/LogOutMan.json
 cp ./main.css ~/.config/LogOutMan/main.css
-
 
